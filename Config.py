@@ -10,6 +10,7 @@ class Config(object):
         self.num_class = 2
         self.max_length = 30
         self.keep_prob = 0.5
+        self.communication_layer_num = 2
 
         self.batch_size = 64
         self.epoch = 50

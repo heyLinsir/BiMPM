@@ -79,10 +79,10 @@ class Model(object):
                 y_state = tf.concat([x[0] for x in y_state], axis=1) # batch * 2 hidden_size
 
             if i == 0:
-	            x_state, y_state, _, _ = self.build_self_attention(x_state, x_output, x_mask, y_state, y_output, y_mask, scope='%d' % (i))
+	            x_state, y_state = self.build_self_attention(x_output, x_mask, y_output, y_mask, scope='%d' % (i))
 
-	            input_x = tf.concat([emb_x, x_state], axis=2) # batch * length * 3 hidden_size
-	            input_y = tf.concat([emb_y, y_state], axis=2) # batch * length * 3 hidden_size
+	            input_x = tf.concat([x_output, x_state], axis=2) # batch * length * 3 hidden_size
+	            input_y = tf.concat([y_output, y_state], axis=2) # batch * length * 3 hidden_size
             if i == self.config.communication_layer_num - 1:
                 end_state = [x_state, y_state]
 
